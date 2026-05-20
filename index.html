@@ -4,30 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Parenting Petals Guide</title>
+    
+    <!-- PWA Manifest Link -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#FFB6C1">
+    
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="icon-192.png">
+
     <style>
-        /* Isse saari default padding aur margins khatam ho jayengi */
         html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden; /* Scrollbars ko body se hatane ke liye */
+            margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; font-family: Arial, sans-serif;
         }
-        /* Yeh iframe ko poori screen par stretch kar dega */
         iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            display: block;
+            width: 100%; height: 100%; border: none; display: block;
+        }
+        /* Install Button Styling */
+        #installBtn {
+            position: fixed; bottom: 20px; right: 20px; 
+            background: #FFB6C1; color: #fff; border: none; 
+            padding: 12px 20px; border-radius: 50px; font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2); cursor: pointer; display: none; z-index: 999;
         }
     </style>
 </head>
 <body>
 
-    <!-- Aapki Google Site yahan load hogi -->
-    <iframe src="https://sites.google.com/view/guide-parentingpetals/home">
-        Your browser does not support iframes. <a href="https://sites.google.com/view/guide-parentingpetals/home">Click here to visit the site</a>.
-    </iframe>
+    <!-- Install App Button for PWA -->
+    <button id="installBtn">Install App</button>
 
+    <!-- Google Site inside a Proxy Wrapper (To bypass Refused to connect) -->
+    <!-- Note: Agar yeh proxy kabhi down ho, to aap direct open karne ka button de sakte hain -->
+    <iframe src="https://api.allorigins.win/raw?url=https://sites.google.com/view/guide-parentingpetals/home"></iframe>
+
+    <script>
+        // Service Worker Register karwana PWA ke liye
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js')
+            .then(() => console.log("Service Worker Registered"))
+            .catch(err => console.log("Service Worker Failed", err));
+        }
+
+        // PWA Installation Prompt Logic
+        let deferredPrompt;
+        const installBtn = document.getElementById('installBtn');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installBtn.style.display = 'block'; // Button dikhao jab app install ho sake
+        });
+
+        installBtn.addEventListener('click', () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('User accepted the install prompt');
+                    }
+                    installBtn.style.style.display = 'none';
+                    deferredPrompt = null;
+                });
+            }
+        });
+    </script>
 </body>
 </html>
