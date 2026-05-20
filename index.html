@@ -1,38 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<title>Parenting Petals</title>
-
-<link rel="manifest" href="manifest.json">
-
-<style>
-html,body{
-margin:0;
-height:100%;
-overflow:hidden;
-}
-iframe{
-border:none;
-width:100%;
-height:100vh;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parenting Petals Guide</title>
+    <style>
+        /* Isse saari default padding aur margins khatam ho jayengi */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden; /* Scrollbars ko body se hatane ke liye */
+        }
+        /* Yeh iframe ko poori screen par stretch kar dega */
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+    </style>
 </head>
-
 <body>
 
-<iframe
-src="https://sites.google.com/view/guide-parentingpetals/home">
-</iframe>
-
-<script>
-if ("serviceWorker" in navigator){
-navigator.serviceWorker.register("sw.js");
-}
-</script>
+    <!-- Aapki Google Site yahan load hogi -->
+    <iframe src="https://sites.google.com/view/guide-parentingpetals/home">
+        Your browser does not support iframes. <a href="https://sites.google.com/view/guide-parentingpetals/home">Click here to visit the site</a>.
+    </iframe>
 
 </body>
 </html>
