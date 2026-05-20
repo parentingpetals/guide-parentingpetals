@@ -1,3 +1,3 @@
-self.addEventListener("install",event=>{
-console.log("Service Worker Installed");
-});
+self.addEventListener("install",()=>self.skipWaiting());
+
+self.addEventListener("fetch",()=>{});
