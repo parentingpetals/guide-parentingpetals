@@ -3,8 +3,8 @@
 "short_name":"Guide Petals",
 "start_url":"./",
 "display":"standalone",
-"background_color":"#00182e",
-"theme_color":"#00182e",
+"background_color":"#001a45",
+"theme_color":"#001a45",
 "icons":[
 {
 "src":"icon-192.png",
