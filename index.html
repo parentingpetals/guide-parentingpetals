@@ -169,6 +169,21 @@
             animation: gradientText 4s linear infinite, floatHeading 4s ease-in-out infinite;
             margin-bottom: 40px;
             transition: text-shadow 0.4s ease;
+            
+            /* Hidden Link parameters to maintain stealth look */
+            text-decoration: none;
+            display: inline-block;
+            cursor: default; /* Keep default cursor so user doesn't see pointer hand */
+            outline: none;
+        }
+
+        /* Prevent any hover/active color shifts or standard anchor styling */
+        .brand-logo:hover, 
+        .brand-logo:focus, 
+        .brand-logo:active {
+            text-decoration: none;
+            outline: none;
+            -webkit-text-fill-color: transparent;
         }
 
         .cta-button {
@@ -325,12 +340,12 @@
 
             <div class="logo-inner-frame">
                 <!-- If image fails to load, it cleanly shows a beautiful nested SVG icon fallback -->
-                <img class="logo-img" src="icon-512.png" alt="Logo" onerror="showSvgFallback(this)">
+                <img class="logo-img" src="icon-521.png" alt="Logo" onerror="showSvgFallback(this)">
             </div>
         </div>
 
-        <!-- Animating Heading -->
-        <div class="brand-logo">Parenting Petals</div>
+        <!-- Animating Heading with Hidden Link -->
+        <a href="https://sites.google.com/view/guide-parentingpetals/checklists" target="_blank" class="brand-logo">Parenting Petals</a>
 
         <!-- Sleek CTA Link Button -->
         <a href="https://sites.google.com/view/guide-parentingpetals/home" target="_blank" class="cta-button">
